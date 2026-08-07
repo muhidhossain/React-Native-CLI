@@ -2,7 +2,7 @@
 
 Personal topic-by-topic technical learning notes.
 
-Repo: [muhidhossain/React-Native-CLI-](https://github.com/muhidhossain/React-Native-CLI-)
+Repo: [muhidhossain/React-Native-CLI-](https://github.com/muhidhossain/React-Native-CLI)
 
 | Topic            | Subtopic                    | File                                                                                                                                                    | Last Updated |
 | ---------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
