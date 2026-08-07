@@ -1,0 +1,44 @@
+<svg width="100%" viewBox="0 0 540 270" role="img" xmlns="http://www.w3.org/2000/svg"><title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400">Gradle build variant matrix</title><desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400">Diagram showing that a build variant is the cross product of a product flavor (dev, staging, prod) and a build type (debug, release), producing six named variants such as devDebug and prodRelease.</desc>
+
+<g style="font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<rect x="40" y="40" width="100" height="40" rx="8" stroke-width="0.5" style="fill:rgb(241, 239, 232);stroke:rgb(95, 94, 90)"/>
+<text x="90" y="60" text-anchor="middle" dominant-baseline="central" style="fill:rgb(68, 68, 65);font-size:12px;font-weight:400">flavor \ type</text>
+
+<rect x="140" y="40" width="160" height="40" rx="8" stroke-width="0.5" style="fill:rgb(241, 239, 232);stroke:rgb(95, 94, 90)"/>
+<text x="220" y="60" text-anchor="middle" dominant-baseline="central" style="fill:rgb(68, 68, 65);font-size:14px;font-weight:500">debug</text>
+
+<rect x="300" y="40" width="160" height="40" rx="8" stroke-width="0.5" style="fill:rgb(250, 236, 231);stroke:rgb(153, 60, 29)"/>
+<text x="380" y="60" text-anchor="middle" dominant-baseline="central" style="fill:rgb(113, 43, 19);font-size:14px;font-weight:500">release</text>
+
+<rect x="40" y="80" width="100" height="50" rx="8" stroke-width="0.5" style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183)"/>
+<text x="90" y="105" text-anchor="middle" dominant-baseline="central" style="fill:rgb(60, 52, 137);font-size:14px;font-weight:500">dev</text>
+
+<rect x="40" y="130" width="100" height="50" rx="8" stroke-width="0.5" style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183)"/>
+<text x="90" y="155" text-anchor="middle" dominant-baseline="central" style="fill:rgb(60, 52, 137);font-size:14px;font-weight:500">staging</text>
+
+<rect x="40" y="180" width="100" height="50" rx="8" stroke-width="0.5" style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183)"/>
+<text x="90" y="205" text-anchor="middle" dominant-baseline="central" style="fill:rgb(60, 52, 137);font-size:14px;font-weight:500">prod</text>
+
+<rect x="140" y="80" width="160" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165)"/>
+<text x="220" y="105" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);font-size:14px;font-weight:500">devDebug</text>
+
+<rect x="300" y="80" width="160" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165)"/>
+<text x="380" y="105" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);font-size:14px;font-weight:500">devRelease</text>
+
+<rect x="140" y="130" width="160" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165)"/>
+<text x="220" y="155" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);font-size:14px;font-weight:500">stagingDebug</text>
+
+<rect x="300" y="130" width="160" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165)"/>
+<text x="380" y="155" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);font-size:14px;font-weight:500">stagingRelease</text>
+
+<rect x="140" y="180" width="160" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165)"/>
+<text x="220" y="205" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);font-size:14px;font-weight:500">prodDebug</text>
+
+<rect x="300" y="180" width="160" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165)"/>
+<text x="380" y="205" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);font-size:14px;font-weight:500">prodRelease</text>
+
+<text x="270" y="250" text-anchor="middle" dominant-baseline="central" style="fill:rgb(95, 94, 90);font-size:12px;font-weight:400">no flavors defined → the flavor dimension collapses to just debug / release</text>
+
+</g>
+</svg>
