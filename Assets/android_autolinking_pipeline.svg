@@ -1,0 +1,54 @@
+<svg width="100%" viewBox="0 0 680 620" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Android autolinking pipeline and its two common failure modes</title>
+<desc>Diagram showing autolinking as a fresh-every-build pipeline: the RN CLI scans node_modules for native dependencies, produces a react-native config JSON dependency graph, and the com.facebook.react Gradle plugin turns that into two things at configure time — settings.gradle/build.gradle wiring and a generated PackageList — which combine into each native module becoming a real Gradle subproject with its own transitive dependencies and AndroidManifest.xml. That in turn is where the two common build failures originate: duplicate class errors from conflicting transitive dependencies, and manifest merger failures from conflicting AndroidManifest attributes.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<rect x="240" y="40" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="340" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(68, 68, 65)">node_modules scan</text>
+<text x="340" y="76" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(95, 94, 90)">has android/+build.gradle, or react-native.config.js</text>
+
+<line x1="340" y1="96" x2="340" y2="140" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="240" y="140" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="340" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(12, 68, 124)">react-native config JSON</text>
+<text x="340" y="176" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">name → { root, platforms.android }</text>
+
+<line x1="340" y1="196" x2="340" y2="240" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="240" y="240" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)"/>
+<text x="340" y="258" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(60, 52, 137)">Gradle plugin codegen</text>
+<text x="340" y="276" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(83, 74, 183)">com.facebook.react, runs at configure time</text>
+
+<line x1="340" y1="296" x2="230" y2="340" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="340" y1="296" x2="450" y2="340" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="130" y="340" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="230" y="358" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(8, 80, 65)">settings.gradle + build.gradle</text>
+<text x="230" y="376" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">include() + implementation project(...)</text>
+
+<rect x="350" y="340" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="450" y="358" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(8, 80, 65)">Generated PackageList</text>
+<text x="450" y="376" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">wired into MainApplication.getPackages()</text>
+
+<line x1="230" y1="396" x2="340" y2="440" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="450" y1="396" x2="340" y2="440" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="240" y="440" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)"/>
+<text x="340" y="458" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(60, 52, 137)">Native module = real subproject</text>
+<text x="340" y="476" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(83, 74, 183)">own transitive deps + own AndroidManifest.xml</text>
+
+<line x1="340" y1="496" x2="230" y2="540" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="340" y1="496" x2="450" y2="540" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="130" y="540" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="230" y="558" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(113, 43, 19)">Duplicate class error</text>
+<text x="230" y="576" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">conflicting transitive deps across modules</text>
+
+<rect x="350" y="540" width="200" height="56" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="450" y="558" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(113, 43, 19)">Manifest merger failed</text>
+<text x="450" y="576" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">conflicting AndroidManifest attributes</text>
+
+</g>
+</svg>
