@@ -1,0 +1,51 @@
+<svg width="100%" viewBox="0 0 700 450" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Release artifact pipeline</title>
+<desc>Diagram comparing how Android and iOS produce a distributable release artifact. On Android, Gradle's release build produces either an APK (installs directly, larger download) or an AAB (the format Play Store requires, which it splits into per-device APKs at install time). On iOS, Xcode archives the build, exports it, and produces a single IPA uploaded to App Store Connect.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<rect x="20" y="20" width="300" height="56" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="170" y="38" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(12, 68, 124)">Gradle release build</text>
+<text x="170" y="56" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(24, 95, 165)">assembleRelease / bundleRelease</text>
+
+<rect x="380" y="20" width="300" height="56" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="530" y="38" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(12, 68, 124)">Xcode Archive</text>
+<text x="530" y="56" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(24, 95, 165)">builds &amp; archives the scheme</text>
+
+<line x1="170" y1="76" x2="90" y2="140" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="170" y1="76" x2="250" y2="140" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="530" y1="76" x2="530" y2="140" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="20" y="140" width="140" height="56" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="90" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(113, 43, 19)">APK</text>
+<text x="90" y="176" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(153, 60, 29)">installs directly, larger</text>
+
+<rect x="180" y="140" width="140" height="56" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="250" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(113, 43, 19)">AAB</text>
+<text x="250" y="176" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(153, 60, 29)">Play Store's required format</text>
+
+<rect x="380" y="140" width="300" height="56" rx="8" stroke-width="0.5" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)"/>
+<text x="530" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(60, 52, 137)">Export</text>
+<text x="530" y="176" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(83, 74, 183)">signs &amp; packages for distribution</text>
+
+<line x1="250" y1="196" x2="250" y2="250" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="530" y1="196" x2="530" y2="250" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="180" y="250" width="140" height="66" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="250" y="270" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(8, 80, 65)">Play Store</text>
+<text x="250" y="288" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">splits AAB into</text>
+<text x="250" y="302" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">per-device APKs</text>
+
+<rect x="380" y="250" width="300" height="56" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="530" y="268" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(113, 43, 19)">IPA</text>
+<text x="530" y="286" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(153, 60, 29)">single distributable format</text>
+
+<line x1="530" y1="306" x2="530" y2="360" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="380" y="360" width="300" height="56" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="530" y="378" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(8, 80, 65)">App Store Connect</text>
+<text x="530" y="396" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(15, 110, 86)">TestFlight or public release</text>
+
+</g>
+</svg>

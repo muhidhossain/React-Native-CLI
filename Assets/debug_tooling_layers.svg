@@ -1,0 +1,48 @@
+<svg width="100%" viewBox="0 0 700 520" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>React Native debugging tool layers: JS, bridge/JSI, and native</title>
+<desc>Diagram showing three layers of React Native debugging: the JS layer where React Native DevTools covers Console, Sources, Network, and the Components tree; the Bridge/JSI layer where console.log calls cross from JS into native logging, serialized over the Bridge on the old architecture or called directly via JSI on the new one; and the native layer which forks by platform into adb logcat on Android and Xcode console or Console.app on iOS. A bottom diagnosis box notes that symptoms with no red box, where the app just dies, mean checking native logs instead of DevTools, since the crash happened below the JS runtime.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<text x="350" y="24" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">JS LAYER</text>
+
+<rect x="60" y="40" width="580" height="90" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="350" y="62" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(12, 68, 124)">React Native DevTools</text>
+<text x="350" y="84" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(24, 95, 165)">Console · Sources (Hermes breakpoints) · Network · Components tree</text>
+<text x="350" y="104" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">Default since RN 0.73–0.74, replacing the old Chrome/V8 debugger</text>
+
+<line x1="350" y1="130" x2="350" y2="168" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<text x="350" y="182" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">BRIDGE / JSI</text>
+
+<rect x="60" y="196" width="580" height="56" rx="8" stroke-width="0.5" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)"/>
+<text x="350" y="216" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(60, 52, 137)">console.log("x") crosses into native logging</text>
+<text x="350" y="236" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(83, 74, 183)">Old arch: serialized over the Bridge · New arch: direct JSI call</text>
+
+<line x1="230" y1="252" x2="200" y2="292" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="470" y1="252" x2="500" y2="292" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<text x="350" y="286" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">NATIVE LAYER — forks by platform</text>
+
+<rect x="60" y="300" width="270" height="100" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="195" y="322" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(8, 80, 65)">Android — adb logcat</text>
+<text x="195" y="344" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(15, 110, 86)">adb logcat -s ReactNativeJS</text>
+<text x="195" y="362" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(15, 110, 86)">adb logcat *:E for native errors/ANRs</text>
+<text x="195" y="382" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">tagged ReactNativeJS vs untagged native</text>
+
+<rect x="370" y="300" width="270" height="100" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="505" y="322" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(8, 80, 65)">iOS — Xcode / Console.app</text>
+<text x="505" y="344" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(15, 110, 86)">Xcode debug console while attached</text>
+<text x="505" y="362" text-anchor="middle" dominant-baseline="central" font-size="12" fill="rgb(15, 110, 86)">Console.app for release/TestFlight builds</text>
+<text x="505" y="382" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">one firehose, filtered by process</text>
+
+<line x1="195" y1="400" x2="270" y2="440" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="505" y1="400" x2="430" y2="440" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="150" y="442" width="400" height="60" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="350" y="462" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(113, 43, 19)">Diagnosis</text>
+<text x="350" y="482" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">No red box + app just dies → check native logs, not DevTools</text>
+
+</g>
+</svg>
