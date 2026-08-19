@@ -1,0 +1,46 @@
+<svg width="100%" viewBox="0 0 700 340" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>AsyncStorage vs MMKV read path compared</title>
+<desc>Side-by-side comparison of reading a persisted value. On the left, AsyncStorage: JS calls getItem, which makes an async native module call over JSI or the bridge, returning a Promise of a string read from a SharedPreferences file on Android or a plist-backed store on iOS. On the right, MMKV: JS calls storage.getString, which is a direct synchronous read from mmap'd shared memory, with no round trip and no Promise. A callout below notes the practical effect: AsyncStorage requires awaiting before the value is ready, so a render can occur before data loads, while MMKV's value is ready synchronously, though its cold-start initialization still involves some async setup.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<text x="185" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">ASYNCSTORAGE</text>
+<text x="515" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">MMKV</text>
+
+<rect x="40" y="36" width="290" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="185" y="58" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">JS calls getItem('key')</text>
+
+<rect x="370" y="36" width="290" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="515" y="58" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">JS calls storage.getString('key')</text>
+
+<line x1="185" y1="80" x2="185" y2="98" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="515" y1="80" x2="515" y2="98" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="100" width="290" height="64" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="185" y="122" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(113, 43, 19)">Async native module call</text>
+<text x="185" y="144" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">returns a Promise&lt;string&gt;</text>
+
+<rect x="370" y="100" width="290" height="64" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="515" y="122" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(8, 80, 65)">Direct synchronous read</text>
+<text x="515" y="144" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">no round trip, no Promise</text>
+
+<line x1="185" y1="164" x2="185" y2="182" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="515" y1="164" x2="515" y2="182" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="184" width="290" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="185" y="206" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">SharedPreferences / plist file</text>
+
+<rect x="370" y="184" width="290" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="515" y="206" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">mmap'd shared memory region</text>
+
+<line x1="185" y1="228" x2="330" y2="246" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="515" y1="228" x2="370" y2="246" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="248" width="620" height="80" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="350" y="268" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(12, 68, 124)">Practical effect</text>
+<text x="350" y="286" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">AsyncStorage: must await before the value is ready — a render can occur before data loads.</text>
+<text x="350" y="302" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">MMKV: value ready synchronously — but cold-start initialization still has some async setup.</text>
+
+</g>
+</svg>

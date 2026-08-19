@@ -1,0 +1,54 @@
+<svg width="100%" viewBox="0 0 700 460" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Fabric's shared C++ core vs the old Bridge-based renderer</title>
+<desc>Side-by-side comparison of how a React render commits to native UI under the old architecture versus Fabric. On the left, the old Bridge: JS renders via the reconciler, then the tree diff is serialized to JSON and sent async over the bridge queue, native rebuilds its own separate Shadow Tree that can drift from JS's version, then commits to the native view hierarchy. On the right, Fabric: JS renders via the reconciler, then writes directly into a shared C++ Shadow Tree via JSI with no serialization, Yoga layout runs on that same jointly-owned tree, then commits to the native view hierarchy. A callout below states what Fabric unlocks: synchronous layout reads mid-frame for gesture-driven UI such as Reanimated, no JS/native tree drift since there is one C++ tree instead of two rebuilt separately, and groundwork for React 18 concurrent rendering.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<text x="185" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">OLD — BRIDGE-BASED RENDERING</text>
+<text x="515" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">NEW — FABRIC (SHARED C++ CORE)</text>
+
+<rect x="40" y="36" width="290" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="185" y="58" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">JS renders (React reconciler)</text>
+
+<rect x="370" y="36" width="290" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="515" y="58" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">JS renders (React reconciler)</text>
+
+<line x1="185" y1="80" x2="185" y2="98" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="515" y1="80" x2="515" y2="98" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="100" width="290" height="64" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="185" y="122" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(113, 43, 19)">Serialize tree diff → bridge queue</text>
+<text x="185" y="144" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">async, JSON, batched</text>
+
+<rect x="370" y="100" width="290" height="64" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="515" y="122" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(8, 80, 65)">Write directly into shared Shadow Tree</text>
+<text x="515" y="144" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">via JSI — no serialization</text>
+
+<line x1="185" y1="164" x2="185" y2="182" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="515" y1="164" x2="515" y2="182" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="184" width="290" height="64" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="185" y="206" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(113, 43, 19)">Native rebuilds its own Shadow Tree</text>
+<text x="185" y="228" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">separate copy — can drift from JS's version</text>
+
+<rect x="370" y="184" width="290" height="64" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="515" y="206" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(8, 80, 65)">Yoga layout runs on that SAME tree</text>
+<text x="515" y="228" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">one tree, jointly owned by JS and native</text>
+
+<line x1="185" y1="248" x2="330" y2="266" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="515" y1="248" x2="370" y2="266" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="268" width="620" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="350" y="290" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">Commit → native view hierarchy</text>
+
+<line x1="350" y1="312" x2="350" y2="328" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="330" width="620" height="112" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="350" y="350" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(12, 68, 124)">What Fabric unlocks</text>
+<text x="350" y="370" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">Synchronous layout reads mid-frame — what gesture-driven UI (e.g. Reanimated) depends on.</text>
+<text x="350" y="388" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">No JS/native tree drift — one C++ tree instead of two rebuilt separately.</text>
+<text x="350" y="406" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">Groundwork for React 18 concurrent rendering features.</text>
+
+</g>
+</svg>

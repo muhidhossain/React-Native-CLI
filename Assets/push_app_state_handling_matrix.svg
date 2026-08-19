@@ -1,0 +1,56 @@
+<svg width="100%" viewBox="0 0 700 360" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Push notification handling by app state, Android vs iOS</title>
+<desc>A grid with three rows, foreground, background, and killed, and two columns, Android and iOS, describing how each platform handles an incoming push in that app state. Foreground: on Android, onMessage fires in JS and you must manually display a notification; on iOS, a banner is shown automatically unless suppressed via the willPresent delegate method. Background: on Android, setBackgroundMessageHandler runs as a headless JS task separate from the running app instance; on iOS, the AppDelegate's didReceiveRemoteNotification fires for custom background processing. Killed: on Android, the same setBackgroundMessageHandler path runs, with Android relaunching a minimal JS environment; on iOS, the app is launched briefly in the background, requiring a content-available flag for silent or data-only pushes. A callout below states the most common bug is assuming onMessage covers all three states, when it only covers foreground.</desc>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<rect x="20" y="20" width="150" height="36" rx="6" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<rect x="180" y="20" width="250" height="36" rx="6" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="305" y="38" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="rgb(12, 68, 124)">ANDROID</text>
+<rect x="440" y="20" width="240" height="36" rx="6" stroke-width="0.5" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)"/>
+<text x="560" y="38" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="rgb(60, 52, 137)">iOS</text>
+
+<rect x="20" y="60" width="150" height="76" rx="6" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="95" y="98" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="rgb(68, 68, 65)">FOREGROUND</text>
+
+<rect x="180" y="60" width="250" height="76" rx="6" stroke-width="0.5" fill="rgb(250, 249, 246)" stroke="rgb(190, 188, 180)"/>
+<text x="305" y="80" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">onMessage() fires in JS —</text>
+<text x="305" y="98" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">you must manually display</text>
+<text x="305" y="116" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">a notification</text>
+
+<rect x="440" y="60" width="240" height="76" rx="6" stroke-width="0.5" fill="rgb(250, 249, 246)" stroke="rgb(190, 188, 180)"/>
+<text x="560" y="80" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">Banner shown automatically</text>
+<text x="560" y="98" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">unless suppressed via</text>
+<text x="560" y="116" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">willPresent delegate method</text>
+
+<rect x="20" y="140" width="150" height="76" rx="6" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="95" y="178" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="rgb(68, 68, 65)">BACKGROUND</text>
+
+<rect x="180" y="140" width="250" height="76" rx="6" stroke-width="0.5" fill="rgb(250, 249, 246)" stroke="rgb(190, 188, 180)"/>
+<text x="305" y="160" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">setBackgroundMessageHandler()</text>
+<text x="305" y="178" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">— a headless JS task,</text>
+<text x="305" y="196" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">separate from the running app</text>
+
+<rect x="440" y="140" width="240" height="76" rx="6" stroke-width="0.5" fill="rgb(250, 249, 246)" stroke="rgb(190, 188, 180)"/>
+<text x="560" y="160" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">AppDelegate's</text>
+<text x="560" y="178" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">didReceiveRemoteNotification</text>
+<text x="560" y="196" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">fires for custom processing</text>
+
+<rect x="20" y="220" width="150" height="76" rx="6" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="95" y="258" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="rgb(68, 68, 65)">KILLED</text>
+
+<rect x="180" y="220" width="250" height="76" rx="6" stroke-width="0.5" fill="rgb(250, 249, 246)" stroke="rgb(190, 188, 180)"/>
+<text x="305" y="240" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">Same setBackgroundMessageHandler</text>
+<text x="305" y="258" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">path — Android relaunches a</text>
+<text x="305" y="276" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">minimal JS environment</text>
+
+<rect x="440" y="220" width="240" height="76" rx="6" stroke-width="0.5" fill="rgb(250, 249, 246)" stroke="rgb(190, 188, 180)"/>
+<text x="560" y="240" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">App launched briefly in</text>
+<text x="560" y="258" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">background; requires</text>
+<text x="560" y="276" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="rgb(68, 68, 65)">content-available:1 for silent pushes</text>
+
+<rect x="20" y="308" width="660" height="40" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="350" y="328" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="rgb(113, 43, 19)">Most common bug: assuming onMessage covers all three states — it only covers foreground.</text>
+
+</g>
+</svg>

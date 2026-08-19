@@ -1,0 +1,41 @@
+<svg width="100%" viewBox="0 0 700 300" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Native view mounting with and without react-native-screens</title>
+<desc>Side-by-side comparison of a three-screen stack. Without react-native-screens, Screen A and Screen B stay fully mounted as native views even while hidden behind Screen C, which is visible. With react-native-screens, Screen A and Screen B are properly unmounted from the native view hierarchy while hidden, and Screen C remains visible. A callout below notes that ten screens deep in a stack means ten fully-mounted native view hierarchies without the library, each still receiving layout passes.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<text x="185" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">WITHOUT react-native-screens</text>
+<text x="515" y="20" text-anchor="middle" font-size="12" font-weight="600" fill="rgb(95, 94, 90)">WITH react-native-screens</text>
+
+<rect x="40" y="36" width="290" height="48" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="185" y="54" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(113, 43, 19)">Screen A — mounted</text>
+<text x="185" y="72" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">hidden, but still a live native view</text>
+
+<rect x="370" y="36" width="290" height="48" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="515" y="54" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(8, 80, 65)">Screen A — unmounted</text>
+<text x="515" y="72" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">released from the native tree</text>
+
+<rect x="40" y="94" width="290" height="48" rx="8" stroke-width="0.5" fill="rgb(250, 236, 231)" stroke="rgb(153, 60, 29)"/>
+<text x="185" y="112" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(113, 43, 19)">Screen B — mounted</text>
+<text x="185" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(153, 60, 29)">hidden, but still a live native view</text>
+
+<rect x="370" y="94" width="290" height="48" rx="8" stroke-width="0.5" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)"/>
+<text x="515" y="112" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(8, 80, 65)">Screen B — unmounted</text>
+<text x="515" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(15, 110, 86)">released from the native tree</text>
+
+<rect x="40" y="152" width="290" height="40" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="185" y="172" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">Screen C — visible</text>
+
+<rect x="370" y="152" width="290" height="40" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="515" y="172" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">Screen C — visible</text>
+
+<line x1="350" y1="192" x2="350" y2="208" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="40" y="210" width="620" height="72" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="350" y="230" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(12, 68, 124)">Why it matters at scale</text>
+<text x="350" y="250" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">Ten screens deep in a stack = ten fully-mounted native view hierarchies without this library —</text>
+<text x="350" y="266" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">each still receiving layout passes even while invisible.</text>
+
+</g>
+</svg>

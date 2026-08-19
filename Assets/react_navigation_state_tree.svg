@@ -1,0 +1,51 @@
+<svg width="100%" viewBox="0 0 700 430" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>React Navigation's nested navigation state tree</title>
+<desc>Tree diagram showing that NavigationContainer holds a Tab.Navigator, whose state is which tab is active. The Tab.Navigator has two Tab.Screens, Home and Profile, each rendering its own Stack.Navigator, whose state is push/pop history independent of the parent tab. The Home stack contains two Stack.Screens, Feed and PostDetail. The Profile stack contains one Stack.Screen, ProfileDetail. This illustrates why going back inside a tab does not reset the tab itself, since each nested stack keeps its own history separate from its parent.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<g font-family="anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif">
+
+<rect x="250" y="20" width="200" height="48" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="350" y="44" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(68, 68, 65)">NavigationContainer</text>
+
+<line x1="350" y1="68" x2="350" y2="98" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="225" y="100" width="250" height="56" rx="8" stroke-width="0.5" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)"/>
+<text x="350" y="118" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="rgb(12, 68, 124)">Tab.Navigator</text>
+<text x="350" y="136" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(24, 95, 165)">state: which tab is active</text>
+
+<line x1="350" y1="156" x2="180" y2="188" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="350" y1="156" x2="520" y2="188" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="80" y="190" width="200" height="48" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="180" y="214" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">Tab.Screen "Home"</text>
+
+<rect x="420" y="190" width="200" height="48" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="520" y="214" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(68, 68, 65)">Tab.Screen "Profile"</text>
+
+<line x1="180" y1="238" x2="180" y2="268" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="520" y1="238" x2="520" y2="268" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="60" y="270" width="240" height="56" rx="8" stroke-width="0.5" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)"/>
+<text x="180" y="288" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(60, 52, 137)">Stack.Navigator</text>
+<text x="180" y="306" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(83, 74, 183)">state: push/pop history</text>
+
+<rect x="400" y="270" width="240" height="56" rx="8" stroke-width="0.5" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)"/>
+<text x="520" y="288" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="rgb(60, 52, 137)">Stack.Navigator</text>
+<text x="520" y="306" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(83, 74, 183)">independent of parent tab</text>
+
+<line x1="180" y1="326" x2="75" y2="358" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="180" y1="326" x2="195" y2="358" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+<line x1="520" y1="326" x2="520" y2="358" marker-end="url(#arrow)" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+
+<rect x="20" y="360" width="110" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="75" y="382" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="rgb(68, 68, 65)">Feed</text>
+
+<rect x="140" y="360" width="110" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="195" y="382" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="rgb(68, 68, 65)">PostDetail</text>
+
+<rect x="430" y="360" width="180" height="44" rx="8" stroke-width="0.5" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)"/>
+<text x="520" y="382" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="rgb(68, 68, 65)">ProfileDetail</text>
+
+</g>
+</svg>
